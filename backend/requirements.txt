@@ -1,0 +1,10 @@
+flask
+flask_sqlalchemy
+flask_migrate
+flask_cors
+flask_swagger_ui
+psycopg2-binary
+python-dotenv
+gunicorn
+pandas
+kaggle

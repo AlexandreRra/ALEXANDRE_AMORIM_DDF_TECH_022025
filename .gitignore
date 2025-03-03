@@ -1,0 +1,29 @@
+# Raiz do projeto
+*.log
+*.env
+*.DS_Store
+
+# Backend (Flask/Python)
+backend/**/__pycache__/
+backend/data
+backend/**/*.zip
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.pytest_cache/
+backend/venv/
+backend/env/
+backend/*.db
+
+# Frontend (Vite/React)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/*.log
+frontend/*.tsbuildinfo
+
+# Dependências e builds gerais
+*.swp
+*.bak
+*.tmp
