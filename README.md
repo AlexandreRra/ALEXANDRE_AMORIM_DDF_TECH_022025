@@ -1,26 +1,24 @@
-# Project Setup and Execution Guide
-[English Version](README.md) | [Versão em Português](README.pt-br.md)
+# Project Setup and Execution Guide  
+[Portuguese Version](README.pt-br.md)  
 
-This guide will help you set up and run the application using Docker Compose.
+This guide will help you set up and run the application using Docker Compose.  
 
-## Prerequisites
+## Prerequisites  
 
-Make sure you have the following installed on your system:
-- [Docker](https://www.docker.com/get-started)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+Make sure you have the following programs installed on your system:  
+- [Docker](https://www.docker.com/get-started)  
+- [Docker Compose](https://docs.docker.com/compose/install/)  
 
-## Getting Started
+## Starting the Project  
 
-### 1. Clone the Repository
+### 1. Clone the Repository  
 ```sh
 git clone https://github.com/AlexandreRra/ALEXANDRE_AMORIM_DDF_TECH_022025
 cd <your-project-directory>
-```
+```  
 
-### 2. Configure Environment Variables
-Modify the `docker-compose.yml` file as needed, especially the environment variables for the API and database.
-
-The structure of the environment variables in `docker-compose.yml` is as follows:
+### 2. Configure Environment Variables  
+Modify the `docker-compose.yml` file to use your [Kaggle API token](https://www.kaggle.com/docs/api#getting-started-installation-&-authentication) for downloading the dataset. Update the following fields in `docker-compose.yml`:  
 
 ```
 services
@@ -29,59 +27,58 @@ services
 |    |
 |    |---environment
 |    |    |
-|    |    |---KAGGLE_KEY
-|    |    |---KAGGLE_USERNAME
-```
+|    |    |---KAGGLE_KEY: <your key>
+|    |    |---KAGGLE_USERNAME: <your username>
+```  
 
-Make sure to replace `KAGGLE_KEY` and `KAGGLE_USERNAME` with your Kaggle API credentials.
+If you do not want to use the Kaggle API, you can download the dataset `.zip` file directly from [this link](https://www.kaggle.com/datasets/piyushjain16/amazon-product-data) and place it in the `./backend` folder. This way, the application will skip the download step and proceed directly to data ingestion and cleaning.  
 
-### 3. Build and Run the Containers
-Run the following command in the project's root directory:
+The dataset contains over 2 million rows and is about 1.5GB in size. Therefore, the data ingestion process into PostgreSQL (only on the first run) may take some time (around 5 minutes).  
+
+⚠️ **Important:**  
+If you stop Docker, PostgreSQL will restart, and all data will be lost. You will need to redo the data ingestion process.  
+
+### 3. Build and Run the Containers  
+Run the following command in the project's root directory:  
 ```sh
 docker-compose up --build
-```
-This will build and start the following services:
-- **PostgreSQL Database** (Port: `5432`)
-- **Flask API** (Port: `5000`)
-- **React Frontend** (Port: `3000`)
+```  
+This will build and start the following services:  
+- **PostgreSQL Database** (Port: `5432`)  
+- **Flask API** (Port: `5000`)  
+- **React Frontend** (Port: `3000`)  
 
-### 4. Access the Application
-- **Frontend:** Open `http://localhost:3000` in your browser.
-- **API:** Open `http://localhost:5000` in your browser or test with a tool like Postman.
-- **Database:** Connect using `localhost:5432`, `myuser`, `mypassword`, and `mydatabase`.
+### 4. Access the Application  
+- **Frontend:** Open `http://localhost:3000` in your browser.  
+- **API:** Open `http://localhost:5000` in your browser or test it using a tool like Postman.  
+- **Swagger Documentation:** Open `http://localhost:5000/apidocs` in your browser.  
+- **Database:** Connect using `localhost:5432`, `myuser`, `mypassword`, and `mydatabase`.  
 
-## Stopping the Application
-To stop the application and remove the containers, use:
+## Stopping the Application  
+To stop the application and remove the containers, use:  
 ```sh
 docker-compose down
-```
+```  
 
-## Additional Commands
-- To rebuild without using cache:
+## Additional Commands  
+- To rebuild without using the cache:  
   ```sh
   docker-compose up --build --force-recreate
-  ```
-- To run in detached mode (background):
+  ```  
+- To run in detached mode (in the background):  
   ```sh
   docker-compose up -d
-  ```
-- To check logs:
+  ```  
+- To check logs:  
   ```sh
   docker-compose logs -f
-  ```
+  ```  
 
-## Troubleshooting
-- If you encounter permission issues with mounted volumes, try running:
-  ```sh
-  sudo chmod -R 777 backend frontend
-  ```
-- Ensure Docker is running before executing `docker-compose` commands.
-- If port conflicts occur, change ports in `docker-compose.yml`.
+## Troubleshooting  
+- Ensure that Docker is running before executing `docker-compose` commands.  
+- If there are port conflicts, change the ports in `docker-compose.yml`.  
 
-## Notes
-- **Database Persistence:** Data is stored in a Docker volume (`postgres_data`).
-- **Hot Reloading:** Changes in the backend and frontend should reflect without restarting the containers.
-- **Kaggle API Key:** Ensure your Kaggle API key is valid for required functionality.
-
-Happy coding! 🚀
+## Notes  
+- **Database Persistence:** The data is stored in a Docker volume (`postgres_data`).  
+- **Hot Reloading:** Changes in the backend and frontend should be reflected without needing to restart the containers.  
 

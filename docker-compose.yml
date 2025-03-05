@@ -29,8 +29,6 @@ services:
       DB_PASSWORD: mypassword
       DB_PORT: 5432
       DATABASE_URL: postgresql://myuser:mypassword@db:5432/mydatabase
-      KAGGLE_KEY: d6b2a8058b572d417c1219d60f749e0d
-      KAGGLE_USERNAME: alexandrerra
     ports:
       - "5000:5000"
     volumes:

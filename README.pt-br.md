@@ -1,5 +1,5 @@
 # Guia de Configuração e Execução do Projeto
-[English Version](README.md) | [Versão em Português](README.pt-br.md)
+[Versão em Inglês](README.md)
 
 Este guia ajudará você a configurar e executar a aplicação usando Docker Compose.
 
@@ -31,7 +31,12 @@ services
 |    |    |---KAGGLE_USERNAME: <seu usuário>
 ```
 
-Caso não queria utilizar a API do kaggle, é possível baixar diretamente o .zip do [dataset](https://www.kaggle.com/datasets/piyushjain16/amazon-product-data) e colocá-lo na pasta `./backend/data/raw`. Assim a aplicação pulará a parte do download e fará apenas a ingestão e limpeza dos dados
+Caso não queria utilizar a API do kaggle, é possível baixar diretamente o .zip do [dataset](https://www.kaggle.com/datasets/piyushjain16/amazon-product-data) e colocá-lo na pasta `./backend`. Assim a aplicação pulará a parte do download e fará apenas a ingestão e limpeza dos dados.
+
+O dataset tem mais de 2 milhões de linhas e cerca de 1.5GB, por isso a ingestão de dados para o Postgres(Apenas na primeira execução) pode levar um tempo (cerca de 5 minutos).
+
+⚠️Importante:
+Caso desligue o docker, o postgres será reiniciado e os dados serão perdidos. Com isso é necessário refazer a ingestão.
 
 ### 3. Construir e Executar os Containers
 Execute o seguinte comando no diretório raiz do projeto:
