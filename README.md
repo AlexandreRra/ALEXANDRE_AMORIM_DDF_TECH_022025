@@ -1,4 +1,5 @@
 # Project Setup and Execution Guide
+[English Version](README.md) | [Versão em Português](README.pt-br.md)
 
 This guide will help you set up and run the application using Docker Compose.
 
