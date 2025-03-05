@@ -2,6 +2,9 @@
 [Versão em Inglês](README.md)
 
 Este guia ajudará você a configurar e executar a aplicação usando Docker Compose.
+## Vídeo explicativo no Youtube
+
+[link](https://youtu.be/8-wQ5Wa_xj8)
 
 ## Pré-requisitos
 

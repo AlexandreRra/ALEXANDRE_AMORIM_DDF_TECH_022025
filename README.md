@@ -2,6 +2,9 @@
 [Portuguese Version](README.pt-br.md)  
 
 This guide will help you set up and run the application using Docker Compose.  
+## Youtube Guide Video
+
+[link](https://youtu.be/8-wQ5Wa_xj8)
 
 ## Prerequisites  
 
