@@ -12,6 +12,7 @@ class Product(Base):
     description = Column(Text)
     product_type_id = Column(Integer)
     product_length = Column(Float)
+    empty_cols = Column(Text)
     
     def to_dict(self):
         return {
@@ -20,5 +21,6 @@ class Product(Base):
             'bullet_points': self.bullet_points,
             'description': self.description,
             'product_type_id': self.product_type_id,
-            'product_length': self.product_length
+            'product_length': self.product_length,
+            'empty_cols': self.empty_cols
         }

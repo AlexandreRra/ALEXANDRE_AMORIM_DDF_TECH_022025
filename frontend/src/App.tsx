@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Header from './components/Header/Header';
+import ProductDistributionChart from './components/ProductDistributionChart/ProductDistributionChart';
+import ScatterDistributionChart from './components/ScatterDistributionChart/ScatterDistributionChart';
+import EmptyColumnsChart from './components/EmptyColumnsChart/EmptyColumnsChart';
+import TemporalTrendChart from './components/TemporalTrendChart/TemporalTrendChart';
+import DensityHeatmapChart from './components/DensityHeatmapChart/DensityHeatmapChart';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface AppLayoutProps {
+  onToggleTheme: () => void;
+  isDarkMode: boolean;
 }
 
-export default App
+const AppLayout: React.FC<AppLayoutProps> = ({ onToggleTheme, isDarkMode }) => (
+  <div className={`app-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+    <Header onToggleTheme={onToggleTheme} isDarkMode={isDarkMode} />
+    <main className="main-content">
+      <Outlet />
+    </main>
+  </div>
+);
+
+const App: React.FC = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleToggleTheme = () => {
+    setIsDarkMode(prev => !prev);
+  };
+
+  return (
+    <Routes>
+      <Route path="/" element={<AppLayout onToggleTheme={handleToggleTheme} isDarkMode={isDarkMode} />}>
+        <Route path="/charts/distribution" element={<ProductDistributionChart />} />
+        <Route path="/charts/scatter" element={<ScatterDistributionChart />} />
+        <Route path="/charts/empty-columns" element={<EmptyColumnsChart />} />
+        <Route path="/charts/temporal-trend" element={<TemporalTrendChart />} />
+        <Route path="/charts/density-heatmap" element={<DensityHeatmapChart />} />
+      </Route>
+    </Routes>
+  );
+};
+
+export default App;

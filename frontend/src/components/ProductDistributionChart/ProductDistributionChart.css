@@ -1,0 +1,13 @@
+.chart-container {
+  min-height: calc(100vh - 32px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.chart-wrapper {
+  width: 80%;
+  height: 90%;
+}
